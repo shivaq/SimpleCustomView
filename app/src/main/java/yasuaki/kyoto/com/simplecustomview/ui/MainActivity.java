@@ -13,6 +13,7 @@ import yasuaki.kyoto.com.simplecustomview.R;
 import yasuaki.kyoto.com.simplecustomview.di.component.ActivityComponent;
 import yasuaki.kyoto.com.simplecustomview.di.component.DaggerActivityComponent;
 import yasuaki.kyoto.com.simplecustomview.di.module.ActivityModule;
+import yasuaki.kyoto.com.simplecustomview.utility.Utility;
 import yasuaki.kyoto.com.simplecustomview.widget.CharacterFrameView;
 
 public class MainActivity extends AppCompatActivity implements MvpView{
@@ -49,19 +50,21 @@ public class MainActivity extends AppCompatActivity implements MvpView{
         return mActivityComponent;
     }
 
-  @OnClick(R.id.subject_character)
+  @OnClick(R.id.subject_circles)
   void onSubCharacterClicked(){
     if (changedToMagician) {
       subjectCharacter.setCharacterCircleImg(R.drawable.ic_robot_circle);
       subjectCharacter.setCharacterBodyImg(R.drawable.ic_robot_body);
       subjectCharacter.setCharacterMouseImg(0);
       subjectCharacter.setCharacterEyeImg(0);
+      subjectCharacter.setCircleColor(Utility.getRandomColorInt());
       changedToMagician = false;
     } else {
       subjectCharacter.setCharacterCircleImg(R.drawable.ic_magician_circle);
       subjectCharacter.setCharacterBodyImg(R.drawable.ic_magician_body);
       subjectCharacter.setCharacterMouseImg(R.drawable.ic_magician_mouse);
       subjectCharacter.setCharacterEyeImg(R.drawable.ic_magician_eye);
+      subjectCharacter.setCircleColor(Utility.getRandomColorInt());
       changedToMagician = true;
     }
 

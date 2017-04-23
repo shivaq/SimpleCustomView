@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -24,20 +25,23 @@ public class CharacterFrameView extends FrameLayout {
   private ImageView characterMouseImg;
   private ImageView characterEyeImg;
 
+  Context context;
+
   public CharacterFrameView(@NonNull Context context,
       @Nullable AttributeSet attrs) {
     super(context, attrs);
+    this.context = context;
     LayoutInflater.from(context).inflate(R.layout.character_frame_view, this, true);
 
     TypedArray typedArray =
         context.getTheme().obtainStyledAttributes(attrs, R.styleable.CharacterFrameView, 0, 0);
 
-    try{
+    try {
       characterCircle = typedArray.getDrawable(R.styleable.CharacterFrameView_character_circle);
       characterBody = typedArray.getDrawable(R.styleable.CharacterFrameView_character_body);
       characterMouse = typedArray.getDrawable(R.styleable.CharacterFrameView_character_mouse);
       characterEye = typedArray.getDrawable(R.styleable.CharacterFrameView_character_eye);
-    } finally{
+    } finally {
       typedArray.recycle();
     }
 
@@ -58,7 +62,8 @@ public class CharacterFrameView extends FrameLayout {
   }
 
   // Setup Views
-  private void init(Drawable characterCircle, Drawable characterBody, Drawable characterMouse, Drawable characterEye) {
+  private void init(Drawable characterCircle, Drawable characterBody, Drawable characterMouse,
+      Drawable characterEye) {
     characterCircleImg = (ImageView) findViewById(R.id.subject_circles);
     characterBodyImg = (ImageView) findViewById(R.id.subject_body);
     characterMouseImg = (ImageView) findViewById(R.id.subject_mouse);
@@ -73,13 +78,20 @@ public class CharacterFrameView extends FrameLayout {
   public void setCharacterCircleImg(int drawableId) {
     characterCircleImg.setImageResource(drawableId);
   }
+
   public void setCharacterBodyImg(int drawableId) {
     characterBodyImg.setImageResource(drawableId);
   }
+
   public void setCharacterMouseImg(int drawableId) {
     characterMouseImg.setImageResource(drawableId);
   }
+
   public void setCharacterEyeImg(int drawableId) {
     characterEyeImg.setImageResource(drawableId);
+  }
+
+  public void setCircleColor(int colorId) {
+    characterCircleImg.setColorFilter(ContextCompat.getColor(context, colorId));
   }
 }

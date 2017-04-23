@@ -10,6 +10,8 @@
   <ImageView
     android:id="@+id/subject_circles"
     android:layout_width="match_parent"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:clickable="true"
     android:layout_height="match_parent"
     tools:src="@drawable/ic_magician_circle"/>
 
